@@ -1,0 +1,57 @@
+<header>
+  <div class="row">
+    <div class="col-12">
+      <h2>Spacemen in space</h2>
+    </div>
+  </div>
+  <div class="row filter-select">
+    <div class="col-4 offset-1">
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Filter..."
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+          [(ngModel)]="searchValue"
+        >
+      </div>
+
+    </div>
+    <div class="col-6">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="inputGroupSelect">Sort</label>
+        </div>
+        <select
+          class="custom-select form-control"
+          id="inputGroupSelect"
+          [(ngModel)]="dirSort"
+        >
+          <option selected value="No">Choose...</option>
+          <option value="Up">Up</option>
+          <option value="Down">Down</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</header>
+<section>
+  <div *ngIf="!isLoaded">
+    <div class="row">
+      <div class="col-12">
+        Loaded...
+      </div>
+    </div>
+  </div>
+  <div class="main" *ngIf="isLoaded">
+    <div class="row" *ngFor="let man of spacemen | filterName:searchValue | sortList:dirSort">
+      <div class="col-6 rrr">{{ man.name}}</div>
+      <div class="col-6 rrr">{{ man.craft}}</div>
+    </div>
+  </div>
+</section>
+<footer>
+  <p>&copy; Copyright</p>
+</footer>
+
